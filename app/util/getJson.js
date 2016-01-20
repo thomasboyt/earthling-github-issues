@@ -2,7 +2,7 @@ import {
   ACTION_START,
   ACTION_SUCCESS,
   ACTION_ERROR,
-} from './asyncReducer';
+} from 'redux-happy-async';
 
 export default async function getJson(url, {dispatch, type, payload}) {
   dispatch({

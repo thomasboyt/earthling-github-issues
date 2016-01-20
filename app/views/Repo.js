@@ -6,7 +6,7 @@ import Icon from 'react-fa';
 import {getRepo} from '../actions/GithubActions';
 import LoadingWrapper from './lib/LoadingWrapper';
 
-import {getAsyncState} from '../util/asyncReducer';
+import {getAsyncState} from 'redux-happy-async';
 
 import {
   GET_REPO,

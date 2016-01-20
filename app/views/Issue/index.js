@@ -7,7 +7,7 @@ import {getIssue} from '../../actions/GithubActions';
 import LoadingWrapper from '../lib/LoadingWrapper';
 import IssueCommentsList from './IssueCommentsList';
 
-import {getAsyncState} from '../../util/asyncReducer';
+import {getAsyncState} from 'redux-happy-async';
 
 import {
   GET_ISSUE,

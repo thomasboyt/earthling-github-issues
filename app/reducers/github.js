@@ -1,4 +1,6 @@
 import createImmutableReducer from '../util/immutableReducer';
+import {createAsyncReducer} from 'redux-happy-async';
+
 import I from 'immutable';
 
 import {
@@ -9,8 +11,6 @@ import {
   GET_ISSUE,
   GET_COMMENTS,
 } from '../ActionTypes';
-
-import createAsyncReducer from '../util/asyncReducer';
 
 const State = I.Record({
   async: I.Map(),

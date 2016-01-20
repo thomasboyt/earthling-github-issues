@@ -5,7 +5,7 @@ import {getComments} from '../../actions/GithubActions';
 import LoadingWrapper from '../lib/LoadingWrapper';
 import IssueComment from './IssueComment';
 
-import {getAsyncState} from '../../util/asyncReducer';
+import {getAsyncState} from 'redux-happy-async';
 
 import {
   GET_COMMENTS,

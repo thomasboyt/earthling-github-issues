@@ -7,7 +7,7 @@ import TimeAgo from 'react-timeago';
 import {getIssues} from '../actions/GithubActions';
 import LoadingWrapper from './lib/LoadingWrapper';
 
-import {getAsyncState} from '../util/asyncReducer';
+import {getAsyncState} from 'redux-happy-async';
 
 import {
   GET_ISSUES,
