@@ -3,7 +3,9 @@
  */
 
 import thunkMiddleware from 'redux-thunk';
+import {asyncMiddleware} from 'redux-happy-async';
 
 export default [
-  thunkMiddleware
+  thunkMiddleware,
+  asyncMiddleware,
 ];

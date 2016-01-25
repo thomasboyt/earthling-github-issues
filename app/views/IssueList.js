@@ -4,7 +4,7 @@ import Icon from 'react-fa';
 import {Link} from 'react-router';
 import TimeAgo from 'react-timeago';
 
-import {getIssues} from '../actions/GithubActions';
+import {getIssues, getRepoKey} from '../actions/GithubActions';
 import LoadingWrapper from './lib/LoadingWrapper';
 
 import {getAsyncState} from 'redux-happy-async';
@@ -12,8 +12,6 @@ import {getAsyncState} from 'redux-happy-async';
 import {
   GET_ISSUES,
 } from '../ActionTypes';
-
-import {getRepoKey} from '../reducers/github';
 
 const IssueList = React.createClass({
   componentWillMount() {
@@ -63,7 +61,7 @@ function select(state, props) {
   return {
     repo: state.github.reposByUser.getIn([username, reponame]),
     issues: state.github.issuesByRepo.getIn([username, reponame]),
-    loadingState: getAsyncState(state.github, GET_ISSUES, getRepoKey({username, reponame}))
+    loadingState: getAsyncState(state, GET_ISSUES, getRepoKey({username, reponame}))
   };
 }
 

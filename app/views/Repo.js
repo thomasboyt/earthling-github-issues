@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import Icon from 'react-fa';
 
-import {getRepo} from '../actions/GithubActions';
+import {getRepo, getRepoKey} from '../actions/GithubActions';
 import LoadingWrapper from './lib/LoadingWrapper';
 
 import {getAsyncState} from 'redux-happy-async';
@@ -11,8 +11,6 @@ import {getAsyncState} from 'redux-happy-async';
 import {
   GET_REPO,
 } from '../ActionTypes';
-
-import {getRepoKey} from '../reducers/github';
 
 const Repo = React.createClass({
   componentWillMount() {
@@ -60,7 +58,7 @@ function select(state, props) {
 
   return {
     repo: state.github.reposByUser.getIn([username, reponame]),
-    loadingState: getAsyncState(state.github, GET_REPO, getRepoKey({username, reponame}))
+    loadingState: getAsyncState(state, GET_REPO, getRepoKey({username, reponame}))
   };
 }
 

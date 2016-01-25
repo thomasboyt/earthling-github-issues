@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {getComments} from '../../actions/GithubActions';
+import {getComments, getIssueKey} from '../../actions/GithubActions';
 import LoadingWrapper from '../lib/LoadingWrapper';
 import IssueComment from './IssueComment';
 
@@ -10,8 +10,6 @@ import {getAsyncState} from 'redux-happy-async';
 import {
   GET_COMMENTS,
 } from '../../ActionTypes';
-
-import {getIssueKey} from '../../reducers/github';
 
 const IssueCommentsList = React.createClass({
   propTypes: {
@@ -61,7 +59,7 @@ function select(state, props) {
 
   return {
     comments: state.github.commentsByIssue.getIn([username, reponame, issueNumber]),
-    loadingState: getAsyncState(state.github, GET_COMMENTS, getIssueKey({username, reponame, issueNumber}))
+    loadingState: getAsyncState(state, GET_COMMENTS, getIssueKey({username, reponame, issueNumber}))
   };
 }
 

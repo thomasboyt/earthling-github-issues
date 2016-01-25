@@ -71,7 +71,7 @@ function select(state, props) {
 
   return {
     user: state.github.users.get(username),
-    loadingState: getAsyncState(state.github, GET_USER, username)
+    loadingState: getAsyncState(state, GET_USER, username)
   };
 }
 

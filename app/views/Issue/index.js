@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import TimeAgo from 'react-timeago';
 
-import {getIssue} from '../../actions/GithubActions';
+import {getIssue, getIssueKey} from '../../actions/GithubActions';
 import LoadingWrapper from '../lib/LoadingWrapper';
 import IssueCommentsList from './IssueCommentsList';
 
@@ -12,8 +12,6 @@ import {getAsyncState} from 'redux-happy-async';
 import {
   GET_ISSUE,
 } from '../../ActionTypes';
-
-import {getIssueKey} from '../../reducers/github';
 
 const Issue = React.createClass({
   componentWillMount() {
@@ -57,7 +55,7 @@ function select(state, props) {
 
   return {
     issue: state.github.issuesByRepo.getIn([username, reponame, issueNumber]),
-    loadingState: getAsyncState(state.github, GET_ISSUE, getIssueKey({username, reponame, issueNumber}))
+    loadingState: getAsyncState(state, GET_ISSUE, getIssueKey({username, reponame, issueNumber}))
   };
 }
 

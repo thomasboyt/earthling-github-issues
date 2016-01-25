@@ -6,12 +6,23 @@ import {
 
 export default async function getJson(url, {dispatch, type, payload}) {
   dispatch({
-    status: ACTION_START,
+    asyncStatus: ACTION_START,
     type,
     ...payload
   });
 
-  const resp = await window.fetch(url);
+  let resp;
+  try {
+    resp = await window.fetch(url);
+  } catch(err) {
+    dispatch({
+      asyncStatus: ACTION_ERROR,
+      type,
+      error: err,
+      ...payload
+    });
+    return;
+  }
 
   if (resp.status !== 200) {
     const respText = await resp.text();
@@ -24,7 +35,7 @@ export default async function getJson(url, {dispatch, type, payload}) {
     }
 
     dispatch({
-      status: ACTION_ERROR,
+      asyncStatus: ACTION_ERROR,
       type,
       error,
       ...payload
@@ -35,7 +46,7 @@ export default async function getJson(url, {dispatch, type, payload}) {
   const responseJson = await resp.json();
 
   dispatch({
-    status: ACTION_SUCCESS,
+    asyncStatus: ACTION_SUCCESS,
     type,
     resp: responseJson,
     ...payload,

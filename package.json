@@ -12,13 +12,14 @@
   "repository": "",
   "license": "MIT",
   "dependencies": {
-    "earthling": "0.0.2",
+    "earthling": "0.0.3",
     "immutable": "^3.7.6",
     "marked": "^0.3.5",
     "react-fa": "^4.0.0",
     "react-timeago": "^2.2.1",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.2",
+    "redux-happy-async": "0.0.1",
     "redux-thunk": "^1.0.3"
   },
   "devDependencies": {

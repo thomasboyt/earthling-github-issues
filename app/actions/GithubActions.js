@@ -9,6 +9,14 @@ import {
 
 import getJson from '../util/getJson';
 
+export function getRepoKey({username, reponame}) {
+  return [username, reponame].join('/');
+}
+
+export function getIssueKey({username, reponame, issueNumber}) {
+  return [getRepoKey({username, reponame}), issueNumber].join('#');
+}
+
 export function getUser(username) {
   return async function(dispatch) {
     await getJson(`https://api.github.com/users/${username}`, {
@@ -26,7 +34,10 @@ export function getUserRepos(username) {
     await getJson(url, {
       dispatch,
       type: GET_USER_REPOS,
-      payload: {username},
+      payload: {
+        uniqueId: username,
+        username
+      },
     });
   };
 }
@@ -38,7 +49,11 @@ export function getRepo(username, reponame) {
     await getJson(url, {
       dispatch,
       type: GET_REPO,
-      payload: {username, reponame},
+      payload: {
+        uniqueId: getRepoKey({username, reponame}),
+        username,
+        reponame
+      },
     });
   };
 }
@@ -50,7 +65,11 @@ export function getIssues(username, reponame) {
     await getJson(url, {
       dispatch,
       type: GET_ISSUES,
-      payload: {username, reponame},
+      payload: {
+        uniqueId: getRepoKey({username, reponame}),
+        username,
+        reponame
+      },
     });
   };
 }
@@ -62,7 +81,12 @@ export function getIssue(username, reponame, issueNumber) {
     await getJson(url, {
       dispatch,
       type: GET_ISSUE,
-      payload: {username, reponame, issueNumber},
+      payload: {
+        uniqueId: getIssueKey({username, reponame, issueNumber}),
+        username,
+        reponame,
+        issueNumber
+      },
     });
   };
 }
@@ -74,7 +98,12 @@ export function getComments(username, reponame, issueNumber) {
     await getJson(url, {
       dispatch,
       type: GET_COMMENTS,
-      payload: {username, reponame, issueNumber},
+      payload: {
+        uniqueId: getIssueKey({username, reponame, issueNumber}),
+        username,
+        reponame,
+        issueNumber
+      },
     });
   };
 }
